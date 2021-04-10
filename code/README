@@ -1,0 +1,3 @@
+This folder contains all the code of the project it is split 2 different way for simplification and testing.
+ The RTOS_Final_Project.zip contains the simplicity studio project while the unit testing folder contains the
+ same updated source files, but with the unit testing suite to run the unit tests.
