@@ -176,7 +176,7 @@ CTEST_SETUP(slider_center_test) {
 
 CTEST2(slider_center_test, slider_center) { 
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 3; i++) {
         ASSERT_EQUAL(data->results[i], capsense_getVal(data->flag_loads[i]));
     }
 }
@@ -189,9 +189,9 @@ CTEST_DATA(slider_error_test) {
 };
 
 CTEST_SETUP(slider_error_test) {
-	data->results[0] = -1;
-	data->results[1] = -1;
-	data->results[2] = -1;
+	data->results[0] = slider_error;
+	data->results[1] = slider_error;
+	data->results[2] = slider_error;
 
 	
 	
@@ -208,7 +208,7 @@ CTEST_SETUP(slider_error_test) {
 
 CTEST2(slider_error_test, slider_error) { 
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 3; i++) {
         ASSERT_EQUAL(data->results[i], capsense_getVal(data->flag_loads[i]));
     }
 }

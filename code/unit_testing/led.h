@@ -9,6 +9,7 @@
 #define SRC_LED_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define LED0 1
 #define LED1 2

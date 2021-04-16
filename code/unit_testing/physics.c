@@ -19,14 +19,36 @@
  *
  *
  * @param  force percentage
- * 	the percentage of the max force determined by the buttons
+ * 	the percentage of the max force determined by the buttons this is given as a number from 0-8 where 0 is 0% and 8 is 100%
  *
  * 	@param  max force
  * 	the determined max force on the base
  *
  ******************************************************************************/
 int force_generator(slider_value direction, uint16_t force_percentage, uint32_t max_force){
-	return 0;
+	int force = (max_force*force_percentage)>>3; //max_f * f%/8
+	switch(direction){
+		case slider_center:
+			return 0;
+			break;
+		case slider_farleft:
+			return -1 * force;
+			break;
+		case slider_left:
+			return -1*force>>1;
+			break;
+		case slider_right:
+			return force>>1;
+			break;
+		case slider_farright:
+			return force;
+			break;
+		default:
+			while(1);
+			break;
+	}
+
+
 }
 
 

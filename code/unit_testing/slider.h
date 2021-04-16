@@ -9,13 +9,15 @@
 #define SRC_SLIDER_H_
 
 #include <stdint.h>
+#include "capsense.h"
 
 typedef enum slider_value{
 	slider_center,
 	slider_farleft,
 	slider_left,
 	slider_right,
-	slider_farright
+	slider_farright,
+	slider_error = -1,
 }slider_value;
 
 void  EX_CapsenseSlider_Task (void  *p_arg);
