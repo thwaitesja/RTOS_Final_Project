@@ -9,7 +9,6 @@
 #define SRC_SLIDER_H_
 
 #include <stdint.h>
-#include "capsense.h"
 
 typedef enum slider_value{
 	slider_center,
@@ -19,6 +18,22 @@ typedef enum slider_value{
 	slider_farright,
 	slider_error = -1,
 }slider_value;
+
+#ifndef UNIT_TEST
+	#include "capsense.h"
+	#include  <kernel/include/os.h>
+
+	extern OS_SEM slider_semaphore;
+	extern slider_value  force_direction_data;
+#endif
+
+
+
+
+
+
+
+
 
 void  EX_CapsenseSlider_Task (void  *p_arg);
 slider_value capsense_getVal(uint32_t* slider_vals);

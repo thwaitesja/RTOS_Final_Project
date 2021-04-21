@@ -15,6 +15,19 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifndef UNIT_TEST
+	#include <kernel/include/os.h>
+	#include "em_gpio.h"
+	#include "bsp.h"
+	#include "em_cmu.h"
+
+	extern OS_FLAG_GRP pushbutton_flags;
+	extern uint16_t force_percentage;
+#endif
+
+
+#include "led.h"
+
 typedef enum button_result{
 	button_increment,
 	button_decrement,
@@ -32,6 +45,7 @@ typedef enum button_result{
 #define button_0r 2
 #define button_1p 4
 #define button_1r 8
+
 
 
 void  Ex_PushbuttonTask (void  *p_arg);

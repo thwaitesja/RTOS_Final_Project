@@ -24,13 +24,13 @@ typedef enum Variant{
 
 //this holds all the data of the data structure
 
-#define VERSION 				1
-#define GRAVITY 				9800  				// 		mm/s^2
-#define MASS_OF_POST 			1000 				//   	g
+#define VERSION 				2
+#define GRAVITY 				980  				// 		mm/s^2
+#define MASS_OF_POST 			100 				//   	g
 #define LENGTH_OF_POST 			1000 				//		mm
 //graphing limits
-#define XMIN 					-30000				//		mm
-#define XMAX 					30000				//		mm
+#define XMIN 					-3000				//		mm
+#define XMAX 					3000				//		mm
 #define VARIANT_SELECTED		INVERTED_PENDULUM	//		Inverted Pendulum
 #define MAX_FORCE				1000				//		mN
 #define MAX_IMPULSE				-1					//		g*m/s - not used in variant 1

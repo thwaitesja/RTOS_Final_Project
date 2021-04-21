@@ -57,8 +57,54 @@ uint8_t pwm_LED_driver(uint16_t percentage, uint8_t flags){
 	return led_status;
 }
 
+#ifndef UNIT_TEST
 
 
+/***************************************************************************//**
+ * @brief
+ *   Ex_LED_Task
+ *   This task takes care of readinf the flags that are passed to it periodically,
+ *   then it goes through logic to make sure the LEDs are flashed at the proper pwm rate
+ *   corresponding to the amount of force or if the game has ended.
+ *
+ *
+ * @param  p_arg
+ *  pointer to unused passed arguments
+ *
+
+ ******************************************************************************/
 void  EX_LED_Task (void  *p_arg){
+	RTOS_ERR  err;
+	uint8_t flags = 0;
+	uint8_t led_drive;
+	uint16_t count = 0;
 
+	//initialize the LED gpios
+	BSP_LedsInit();
+	BSP_LedClear(0);
+	BSP_LedClear(1);
+
+	while(1){
+		flags = led_nonblocking_flags; //read flags from non blocking atomic flag data
+		led_nonblocking_flags = 0;// remove the flags
+		led_drive = pwm_LED_driver(force_percentage, flags);
+
+		if(led_drive & LED0){
+			BSP_LedSet(0);
+		}
+		else{
+			BSP_LedClear(0);
+		}
+
+		//periodic flashing at 1 Hz
+		if(led_drive & LED1){
+			count = (count+1)%200;
+			if(count == 0){
+				BSP_LedToggle(1);
+			}
+		}
+
+		OSTimeDly(1, OS_OPT_TIME_DLY, &err); //needs to be periodic for pwm
+	}
 }
+#endif
